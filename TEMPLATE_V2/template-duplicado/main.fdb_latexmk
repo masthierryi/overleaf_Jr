@@ -1,5 +1,5 @@
 # Fdb version 4
-["pdflatex"] 1776381534.51498 "c:/Users/davik/Downloads/Latex_tests/TEMPLATE_V2/template-duplicado/main.tex" "main.pdf" "main" 1776381536.68172 2
+["pdflatex"] 1776382087.88536 "c:/Users/davik/Downloads/Latex_tests/TEMPLATE_V2/template-duplicado/main.tex" "main.pdf" "main" 1776382089.85556 2
   "C:/Users/davik/AppData/Local/MiKTeX/miktex/data/le/pdftex/pdflatex.fmt" 1755910769 13254313 448da337acfdc00c0a209cf6199738de ""
   "C:/Users/davik/AppData/Local/Programs/MiKTeX/fonts/tfm/public/cm/cmr10.tfm" 1136765053 1296 45809c5a464d5f32c8f98ba97c1bb47f ""
   "C:/Users/davik/AppData/Local/Programs/MiKTeX/fonts/tfm/public/cm/cmr12.tfm" 1136765053 1288 655e228510b4c2a1abe905c368440826 ""
@@ -76,9 +76,9 @@
   "C:/Users/davik/AppData/Local/Programs/MiKTeX/tex/latex/xpatch/xpatch.sty" 1585221260 8510 7803f78066c4f9d008405191a4b43073 ""
   "C:/Users/davik/AppData/Local/Programs/MiKTeX/tex/latex/zref/zref-abspage.sty" 1750428951 2269 2de6c7a5fd634dfef00a960544463a38 ""
   "C:/Users/davik/AppData/Local/Programs/MiKTeX/tex/latex/zref/zref-base.sty" 1750428951 20785 198a9cb2e04238d92c320d0d9edbd76a ""
-  "c:/Users/davik/Downloads/Latex_tests/TEMPLATE_V2/template-duplicado/main.tex" 1776381529 5325 d41bba0005a66259d81d9313738af384 ""
-  "main.aux" 1776381526 32 3985256e7290058c681f74d7a3565a19 "pdflatex"
-  "main.tex" 1776381529 5325 d41bba0005a66259d81d9313738af384 ""
+  "c:/Users/davik/Downloads/Latex_tests/TEMPLATE_V2/template-duplicado/main.tex" 1776382082 5320 45efad64ca52c242d4016ade6ad7c615 ""
+  "main.aux" 1776382079 32 3985256e7290058c681f74d7a3565a19 "pdflatex"
+  "main.tex" 1776382082 5320 45efad64ca52c242d4016ade6ad7c615 ""
   (generated)
   "main.aux"
   "main.log"
