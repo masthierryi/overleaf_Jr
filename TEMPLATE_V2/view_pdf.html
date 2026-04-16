@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>PDF Canvas Preview</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.min.js"></script>
+    <style>
+        body { background: #333; margin: 0; display: flex; flex-direction: column; align-items: center; }
+        canvas { margin: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.5); max-width: 100%; }
+        #controls { position: fixed; top: 0; background: rgba(0,0,0,0.8); color: white; padding: 5px; width: 100%; text-align: center; z-index: 10; }
+    </style>
+</head>
+<body>
+    <div id="controls">Status: <span id="status">Carregando...</span></div>
+    <div id="pdf-container" style="margin-top: 40px;"></div>
+
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const pdfFile = urlParams.get('file');
+        const pdfjsLib = window['pdfjs-dist/build/pdf'];
+        pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.worker.min.js';
+
+        if (pdfFile) {
+            const loadingTask = pdfjsLib.getDocument(pdfFile + "?t=" + new Date().getTime());
+            loadingTask.promise.then(pdf => {
+                document.getElementById('status').innerText = "PDF Carregado - " + pdf.numPages + " páginas";
+                const container = document.getElementById('pdf-container');
+                
+                for(let n = 1; n <= pdf.numPages; n++) {
+                    pdf.getPage(n).then(page => {
+                        const viewport = page.getViewport({scale: 1.5});
+                        const canvas = document.createElement('canvas');
+                        const context = canvas.getContext('2d');
+                        canvas.height = viewport.height;
+                        canvas.width = viewport.width;
+                        container.appendChild(canvas);
+                        page.render({canvasContext: context, viewport: viewport});
+                    });
+                }
+            }).catch(err => {
+                document.getElementById('status').innerText = "Erro ao carregar: " + err.message;
+            });
+        }
+    </script>
+</body>
+</html>
