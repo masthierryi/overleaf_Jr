@@ -1,11 +1,37 @@
 {
-  // ===== BUILD =====
-  "latex-workshop.latex.outDir": "%DIR%/build",
 
-  // ===== PDF VIEW =====
-  "latex-workshop.view.pdf.viewer": "tab",
+  // ===== MISC SETTINGS ==================================
+  //"latex-workshop.view.pdf.invert": 1, //1 for black theme | 0 for white (default) theme
+  "latex-workshop.view.pdf.color.dark.pageColorsBackground": "#1e1e1e", // custom pallete
+  "latex-workshop.view.pdf.color.dark.pageColorsForeground": "#ebdbb2",
+
+  // ===== VS CODE SETTINGS ===============================
+  // Prevent VS code from closing (and disconnecting live share) for updates
+  "update.mode": "none",
+  "extensions.autoUpdate": false,
+
+  // ===== LIVE SHARE SETTINGS ============================
   "latex-workshop.view.pdf.internal.synctex.keybinding": "double-click",
+  "liveshare.publishDiagnostics": true, // Allow the guest to see "problems"
+  // Shared PDF viewer network (I would not change it)
+  "liveshare.sharedServers": [65051],
+  "liveshare.guestApprovalRequired": false,
+  "liveshare.defaultAccessMode": "readWrite",
+  "latex-workshop.view.pdf.viewer": "tab",
+  "latex-workshop.view.pdf.internal.port": 65051,
+  "latex-workshop.viewer.pdf.internal.token": "lamec",
+  "latex-workshop.view.pdf.external.host": "127.0.0.1",
 
+  // ===== LATEX WORKSHOP SETTINGS ========================
+  // Hide auxiliar files (except .synctex(busy) for progress tracking)
+  "files.exclude": {
+    "**/*.aux": true,         "**/*.bbl": true,         "**/*.bcf": true, "**/*.blg": true,
+    "**/*.fdb_latexmk": true, "**/*.fls": true,         "**/*.lof": true, "**/*.toc": true,
+    "**/*.run.xml": true,     "**/*.synctex.gz": true,  "**/*.out": true, "**/*.lot": true,
+    "**/*.log": true,         "**/*.synctex(busy)": false // these two are interesting to see
+  },
+  // Build settings
+  "latex-workshop.latex.outDir": "%DIR%", // make possible the files tree for many people
   "latex-workshop.latex.tools": [
     {
       "name": "lualatex",
@@ -13,7 +39,6 @@
       "args": [
         "-interaction=nonstopmode",
         "-synctex=1",
-        "-output-directory=%DIR%/build",
         "%DOC%"
       ]
     },
@@ -21,32 +46,26 @@
       "name": "biber",
       "command": "biber",
       "args": [
-        "--input-directory=%DIR%/build",
-        "--output-directory=%DIR%/build",
         "%DOCFILE%"
       ]
-    },
-    {
-      "name": "move-pdf",
-      "command": "cmd",
-      "args": [
-      "/C",
-      "move /Y %DIR%\\build\\%DOCFILE%.pdf %DIR%"
-      ]
     }
-  ],
+  ], // compile references properly and use lualatex as main compiler
   "latex-workshop.latex.recipes": [
     {
-      "name": "lualatex -> biber -> lualatex*2 ->move",
+      "name": "lualatex -> biber -> lualatex*2",
       "tools": [
         "lualatex",
         "biber",
         "lualatex",
-        "lualatex",
-        "move-pdf"
+        "lualatex"
       ]
-    }
-  ],
+    },
+    {
+      "name": "lualatex",
+      "tools": [
+        "lualatex"
+      ]
+    },
+  ] // make a functional recipe that use the tools and prevent errors
 
-  "latex-workshop.latex.autoBuild.run": "onSave"
 }
