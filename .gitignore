@@ -1,0 +1,43 @@
+# LaTeX - Temporary and auxiliary files
+*.aux
+*.log
+*.toc
+*.lof
+*.lot
+*.out
+*.bbl
+*.blg
+*.bcf
+*.run.xml
+*.synctex.gz
+*.fdb_latexmk
+*.fls
+
+# Build Folders
+build/
+bin/
+obj/
+
+# Office Files and others (Optional - but recommended for light repos)
+*.pptx
+*.docx
+
+# VS Code - Local environment
+.vscode/extensions.json
+.history/
+*.code-workspace
+
+# OS junk
+Thumbs.db
+.DS_Store
+
+# Programming Scripts Junk (MATLAB/Python)
+*.asv
+*.m~
+__pycache__/
+*.pyc
+*.mph.lock
+
+# other
+test.m
+test.tex

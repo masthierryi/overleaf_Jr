@@ -1,37 +1,47 @@
 {
 
-  // ===== MISC SETTINGS ==================================
-  //"latex-workshop.view.pdf.invert": 1, //1 for black theme | 0 for white (default) theme
-  "latex-workshop.view.pdf.color.dark.pageColorsBackground": "#1e1e1e", // custom pallete
-  "latex-workshop.view.pdf.color.dark.pageColorsForeground": "#ebdbb2",
+  // ----------------------------------------------------------------
+  // MISC SETTINGS 
+  // ----------------------------------------------------------------
+  // 1 for dark theme | 0 for light (default) theme
+  "latex-workshop.view.pdf.invert": 0, 
+  "latex-workshop.view.pdf.color.dark.pageColorsForeground": "#21201c", // (gruvbox colors)
+  "latex-workshop.view.pdf.color.dark.pageColorsBackground": "#c8c9a7",
+  "latex-workshop.view.pdf.color.dark.backgroundColor":      "#21201c",
+  "latex-workshop.view.pdf.color.dark.pageBorderColor":      "#000000",
 
-  // ===== VS CODE SETTINGS ===============================
+  // ----------------------------------------------------------------
+  // VS CODE SETTINGS
+  // ----------------------------------------------------------------
   // Prevent VS code from closing (and disconnecting live share) for updates
   "update.mode": "none",
   "extensions.autoUpdate": false,
 
-  // ===== LIVE SHARE SETTINGS ============================
+  // ----------------------------------------------------------------
+  // LATEX WORKSHOP SETTINGS
+  // ----------------------------------------------------------------
   "latex-workshop.view.pdf.internal.synctex.keybinding": "double-click",
-  "liveshare.publishDiagnostics": true, // Allow the guest to see "problems"
-  // Shared PDF viewer network (I would not change it)
-  "liveshare.sharedServers": [65051],
-  "liveshare.guestApprovalRequired": false,
-  "liveshare.defaultAccessMode": "readWrite",
-  "latex-workshop.view.pdf.viewer": "tab",
-  "latex-workshop.view.pdf.internal.port": 65051,
-  "latex-workshop.viewer.pdf.internal.token": "lamec",
-  "latex-workshop.view.pdf.external.host": "127.0.0.1",
-
-  // ===== LATEX WORKSHOP SETTINGS ========================
+  "latex-workshop.synctex.afterBuild.enabled": false,
+  "latex-workshop.latex.rootFile.useSubFile": true,
+  "latex-workshop.latex.rootFile.doNotPrompt": true,
+  "latex-workshop.bind.altKeymap.enabled": true,
+  "latex-workshop.latex.recipe.default": "lastUsed",
+  "latex-workshop.latex.autoClean.run": "never",
   // Hide auxiliar files (except .synctex(busy) for progress tracking)
+  // this is for the vs code, for the github there is a .gitignore file
+  // ----------------------------------------------------------------
   "files.exclude": {
     "**/*.aux": true,         "**/*.bbl": true,         "**/*.bcf": true, "**/*.blg": true,
     "**/*.fdb_latexmk": true, "**/*.fls": true,         "**/*.lof": true, "**/*.toc": true,
     "**/*.run.xml": true,     "**/*.synctex.gz": true,  "**/*.out": true, "**/*.lot": true,
-    "**/*.log": true,         "**/*.synctex(busy)": false // these two are interesting to see
+    "**/*.log": true,         "**/*.synctex(busy)": false
   },
   // Build settings
-  "latex-workshop.latex.outDir": "%DIR%", // make possible the files tree for many people
+  // ----------------------------------------------------------------
+  // make possible the files tree for many people
+  "latex-workshop.latex.outDir": "%DIR%", 
+  // compile references properly and use lualatex as main compiler
+  // ----------------------------------------------------------------
   "latex-workshop.latex.tools": [
     {
       "name": "lualatex",
@@ -49,8 +59,17 @@
         "%DOCFILE%"
       ]
     }
-  ], // compile references properly and use lualatex as main compiler
+  ], 
+  // ----------------------------------------------------------------
+  // make a manual recipe that use the tools and prevent errors (without perl)
+  // ----------------------------------------------------------------
   "latex-workshop.latex.recipes": [
+    {
+      "name": "lualatex fast compile",
+      "tools": [
+        "lualatex"
+      ]
+    }, // this one doesn't compile references properly, but is fast and useful for quick checks
     {
       "name": "lualatex -> biber -> lualatex*2",
       "tools": [
@@ -60,12 +79,5 @@
         "lualatex"
       ]
     },
-    {
-      "name": "lualatex",
-      "tools": [
-        "lualatex"
-      ]
-    },
-  ] // make a functional recipe that use the tools and prevent errors
-
+  ] // this one compile references properly, but is slow and can produce errors (without perl)
 }
